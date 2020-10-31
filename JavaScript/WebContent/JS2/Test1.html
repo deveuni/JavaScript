@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+   <h1>WebContents/JS2/Test1.html</h1>
+   
+   <script type = "text/javascript">
+    // 함수(function) -> 메서드(객체지향언어)
+    
+    // 변수? 데이터를 저장하는 곳
+    // 함수? 실행문을 저장해서 사용하는 곳		
+    
+    // (일반함수)		
+    //   function 함수명(){
+    //   실행할 문장들;
+    //   }	
+    // => 사용 : 함수명(); (함수의 이름을 부른다/호출한다) 
+    
+    // (익명함수)
+    //   변수 = function(){
+    //   실행할 문장들;
+    //   }	
+    // => 사용 : 변수명(); (익명함수의 경우 변수의 이름을 호출)
+    
+    function sayHello(){
+    	for(var i=1; i<=5; i++){
+        	document.write("<h1>안녕</h1>");
+        }
+    }
+    
+    // 함수 호출
+    sayHello();
+    document.write("<hr>");
+    sayHello();
+    
+    /*for(var i=1; i<=5; i++){
+    	document.write("<h1>안녕</h1>");
+    }*/
+    
+    // -> Test4.html 숫자퀴즈를 메서드로 생성해서 사용(호출)
+
+    
+    /*function numberQuiz(){
+    	
+    	var Quiz = 50;
+    	
+        document.write(" Quiz : "+Quiz+"<br>");
+    
+          for(var cnt=1;;cnt++){
+	      var value = prompt("정답을 입력하시오(1~100)","0");
+    
+          if(value > Quiz){
+    	     alert("입력된 값이 더 큽니다.");
+          }else if(value < Quiz){
+    	     alert("입력된 값이 더 작습니다.");
+          }else{
+    	     alert("정답입니다.("+cnt+")");
+    	   break;
+          }
+          
+          }
+    }*/
+    
+    // numberQuiz();
+    
+    // 매개변수가 있는 함수
+    // function 함수명(매개변수1, 매개변수2, ...){
+    // }
+    // => 사용 함수명(값1, 값2, ...);
+    
+    // 개인정보를 출력하는 함수 showInfo()
+    // -> 함수 호출시 이름, 전화번호를 입력 -> 메서드 전달 -> 출력
+
+    function showInfo(name, tel){
+    	document.write("사용자 정보 출력<br>");
+    	document.write("이름 : "+name+", 전화번호 : "+tel);
+    	
+    }
+    
+    //showInfo();
+    showInfo("홍길동","010-1234-5678");
+    
+    document.write("<br>");
+    
+    // 숫자 1개를 전달받아서 1 ~ 전달받은 숫자까지의 합을 계산해서 
+    // 출력해주는 함수 생성
+    function numberSum(num){
+    	var sum = 0;
+    	
+    	for(var i=1;i<=num;i++){
+    		sum += i;
+    	}	
+   		document.write("총합 : "+sum);
+     }
+    
+    numberSum(10);
+    
+    document.write("<br>");
+    numberSum(100);
+    
+    document.write("<hr>");
+    
+    // 숫자 1개를 전달받아서 -> 홀수/짝수 판별하는 함수 생성
+    // "000은 홀수/짝수 입니다."
+    
+    function numberTest(num){
+       		if(num%2==0){
+    			document.write(num+"는 짝수입니다.<br>");
+    		}else{
+    			document.write(num+"는 홀수입니다.<br>");
+    		}
+    }
+    
+    numberTest(55);
+    numberTest(100);
+    
+    // 값을 돌려주는 함수
+    //     function 함수명(){
+    //         실행코드;
+    //         return 값;
+    //     }
+    
+    // reNumber(숫자) => 입력받은 숫자를 그대로 리턴
+    
+   /* function reNumber(num){
+    	return num;
+    }
+    
+    var value = reNumber(1000);
+    document.write(value);*/
+    
+    // => 입력받은 숫자 + 500 => 결과 리턴
+    
+    function reNumber(num){
+    	
+    	var result = num + 500;
+    	//return num + 500;
+    	return result;
+    }
+    
+    var value = reNumber(1000);
+    document.write(value);
+    document.write(reNumber(2000));
+    
+    document.write("<br>");
+    
+    // 숫자 < 0 => 양수, 숫자 > 0 => 그대로
+    // 숫자 1개를 전달 받아서 숫자의 절댓값을 계산해서 리턴
+    // 리턴받은 결과값을 변수에 담아서 출력 
+    
+    /* 방법1
+     function absNumber(num){
+    	if(num>0){
+    		return num;
+    	}else{ // num <0
+    		//return -1 * num; -> 가능
+            return -num;
+    	}
+     }*/
+     
+     // 방법2
+    /* function absNumber(num){
+        if(num < 0){
+    	 num = -num;
+        }
+      
+         return num;
+     }*/
+     
+     // 방법 3
+     function absNumber(num){
+         return num<0? -num:num;
+     }
+   
+   document.write("|-100| : " +absNumber(100));
+   
+   document.write("<br>");
+   
+   /*function 함수명(){
+	   return;// => 값이 없을 때는 함수종료
+   }*/
+   
+   function sendMSG(){
+	   document.write("안녕");
+	   return;
+	   document.write("하세요");
+   }
+   
+    sendMSG();
+    
+    document.write("<br>");
+    
+    // 재귀함수 호출
+    //   function 함수명 (){
+    //   	실행코드;
+    //  	함수명();
+    //   }
+    
+    // 함수명();
+    
+    var number = 0;
+    function testFun(){
+    	number++;
+    	
+    	document.write(number+"<br>");
+    	
+    	if(number == 10) {
+    		return;
+    	}
+        
+    	// 재귀함수 호출 => 사용범위를 주의
+    	testFun();
+     }
+    
+    testFun();
+    
+    // 전역변수, 지역변수
+    // 전역변수 : 코드의 전반적인 위치에서 사용할 수 있는 변수 
+    // 지역변수 : 코드의 특정 지역에서만 사용 가능한 변수(함수)
+
+    
+    //여러가지 정리.
+    
+    var number = 200; // 전역변수
+    
+    function fun(){
+    	var number = 300; // 지역변수
+    	//document.write(number); //300
+    	return number;// 지역변수 출력하는 방법
+    }
+    
+    number = fun(); // 
+    
+    document.write(number);// 200, 밖에서 지역변수를 호출했더라도 함수범위밖이라서 안나옴.
+    
+    
+    ////////
+    
+    var number = 200; // 전역변수
+    
+    function fun(n){
+    	
+    	var val = n;
+    	
+    	var number = 300; // 지역변수
+    	
+    	return number;
+    }
+    
+    number = fun(); // 
+    
+    document.write(number);
+    
+    document.write("<br>");
+    
+    // 익명함수 -> 일회성
+    // 를 사용해서 " 안녕하세요 "출력하는 함수를 생성
+    var fun1 = function(){
+       	document.write("안녕하세요");
+    }
+    
+    fun1();
+    
+    // 내장함수
+    // -> 자바스크립트(엔진)에는 내장되어있는 함수들이 있음.
+    // => 필요시에 검색해서 사용
+    
+    // String();
+    // Number("1");
+    // Boolean();
+    // parseInt(); -> 문자데이터를 정수데이터로 변경 (+,-,0)
+    // parseFloat(); -> 문자데이터를 실수데이터로 변경 (x.xxx)
+    
+    // alert("경고창");
+    // prompt("질문","기본값");
+    // confirm() -> yes, no 결정
+    
+    
+    
+    
+    
+    
+   
+   </script>
+
+</body>
+</html>

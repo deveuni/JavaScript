@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h1>WebContent/JS4/Test5.html</h1>
+<form action="itwill.jsp" name="fr" method ="get" onsubmit=" return fun1();">
+	<table border ="1">
+		<tr>
+			<td>아이디 </td>
+			<td><input type="text" name="id"></td>
+		</tr>
+		<tr>
+			<td>비밀번호</td>
+			<td><input type="password" name="pw"></td>
+		</tr>
+		<tr>
+			<td>비밀번호확인</td>
+			<td><input type="password" name="pw2"></td>
+		</tr>
+		<tr>
+			<td>이름</td>
+			<td><input type="text" name="name"></td>
+		</tr>
+		<tr>
+			<td>주민등록번호</td>
+			<td><input type="text" name="jumin"></td>
+		</tr>
+		<tr>
+			<td>성별</td>
+			<td><input type="radio" name="gender" value="남">남
+			    <input type="radio" name="gender" value="여">여
+			</td>
+		</tr>
+		<tr>
+			<td>취미</td>
+			<td><input type="checkbox" name="hobby" value="독서">독서
+			    <input type="checkbox" name="hobby" value="여행">여행
+			    <input type="checkbox" name="hobby" value="영화">영화
+			</td>
+		</tr>
+		<tr>
+			<td>좋아하는 과목</td>
+			<td>
+				<select name="sel">
+					<option value="">선택하시오</option>
+					<option value="JAVA">자바프로그래밍</option>
+					<option value="JSP">웹프로그래밍</option>
+					<option value="DB">데이터베이스</option>
+				</select>
+			</td>		
+		</tr>
+		<tr>
+			<td>하고싶은 말</td>
+			<td>
+				<textarea rows="5" cols ="10" name="txt"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="submit" value="회원가입" onclick="">
+				<input type="reset" value="초기화">
+			</td>
+		</tr>
+	</table>
+</form>
+	
+	<!-- 
+		* 아이티윌 회원가입 프로그램 작성
+		
+		1) 모든 정보가 입력되어야지만 회원가입이 가능 
+		2) 각 항목이 선택/입력이 없을 경우 해당 요소의 알림고 함께 포커싱
+		3) ID값은 최소 4자리에서 10자리까지만 허용 가능
+		4) 비밀번호 확인시 두개의 입력값이 같은 경우만 회원가입 가능
+		      비밀번호가 다른 경우, 비밀번호 확인창 포커싱 + 경고창
+		5) 주민번호를 입력받아서 -> 성별을 체크 
+		6) 성별체크가 없을 경우, 기본값 설정
+		7) 취미도 선택이 하나도 없을 경우, 1번 옵션을 선택
+		8) 좋아하는 과목도 선택이 안된 경우, 경고창을 사용하여 확인할 수 있도록 하기
+		 	
+	 -->
+
+	<script type="text/javascript">
+ 	
+	function fun1(){
+		
+		var id = document.fr.id.value;
+		
+       if(id == ""){
+			alert("아이디를 입력하세요.");
+			document.fr.id.focus();
+			return false;
+		}
+       
+       if(!(4 <= id.length && id.length <=10) ){ 
+			alert("아이디는 4~10자까지 가능합니다.");
+			document.fr.id.focus();
+			return false;
+		}
+		
+       if(document.fr.pw.value == ""){
+       		alert("비밀번호를 입력하세요.");
+       		document.fr.pw.focus();
+       		return false;
+       }
+       
+       if(document.fr.pw2.value == ""){
+      		alert("비밀번호확인을 입력하세요.");
+      		document.fr.pw2.focus();
+      		return false;
+      }
+        
+       if(document.fr.pw.value != document.fr.pw2.value){
+    	  alert("비밀번호를 다시 확인해주세요.");
+    	  document.fr.pw2.focus();
+    	  return false;
+      } 
+       
+        if(document.fr.name.value == ""){
+     		alert("이름을 입력하세요.");
+     		document.fr.name.focus();
+     		return false;
+     }
+		
+       
+       if(document.fr.jumin.value == ""){
+      		alert("주민등록번호를 입력하세요.");
+      		document.fr.jumin.focus();
+      		return false;
+      }
+       
+       // 성별이 체크 안된 경우에 주민번호를 사용해서 성별 자동체크
+       	
+       if(document.fr.gender[0].checked == false && document.fr.gender[1].checked == false ){
+
+           if(document.fr.jumin.charAt(7) == 1 || document.fr.jumin.charAt(7) == 3){
+        	   alert("남성");
+        	  document.fr.gender[0].checked = true;
+        	  // 리턴 펄스 안쓰는 이유: 정상적으로 체크했기 때문에
+          }
+           
+           if(document.fr.jumin.charAt(7) == 2 || document.fr.jumin.charAt(7) == 4){
+        	   alert("여성");
+        	  document.fr.gender[1].checked = true;
+        	  
+          }   
+       }
+       
+
+       
+      
+
+       if(document.fr.hobby[0].checked == false && document.fr.hobby[1].checked == false &&
+    		   document.fr.hobby[2].checked == false  ){
+    	   alert("취미를 체크하세요.");
+    	   document.fr.hobby[0].checked == true;
+    	  // 선택안했을 때 무조건 하나가 선택되게 했으므로 리턴펄스 안해도됨. 
+       }
+       
+       if(document.fr.sel.selectedIndex == 0 ){
+    		alert("좋아하는 과목을 선택하세요.");
+    		document.fr.sel.focus();
+    		return false;
+    }
+       if(document.fr.txt.value == ""){
+    	   alert("메모를 입력하시오");
+    	   document.fr.txt.focus();
+    	   return false;
+       }
+       
+		
+	}  
+	
+  
+	
+	
+	
+	</script>
+
+
+
+</body>
+</html>
